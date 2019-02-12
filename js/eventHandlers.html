@@ -1,0 +1,73 @@
+<script>
+    //addCourseCallback -- When returning from a GET request to add a player to the tournament,
+    //display an alert box with the returned object and then populate the player ID fields with the ID
+    //returned, if any
+    function addCourseCallback(data, status) {
+      alert("The GET request to add a course returned: \n" + JSON.stringify(data) + "\nStatus: " + status);
+      $("#Id").val(data.id);
+      $("#id2").val(data.id);
+    }
+
+    //getCourseDatacallback -- When returning from a GET request to get course data,
+    //display an alert box with the returned object.
+    function getCourseDataCallback(data, status) {
+      alert("The GET request to get course data returned: \n" + JSON.stringify(data) + "\nStatus: " + status);
+    }
+
+     //postCourseDataCallback -- When returning from a POST request to submit course data,
+     //display an alert box with the return value.
+     function postCourseDataCallback(response, status) {
+      alert("The POST request to update course data returned: \n" + response + "\nStatus: " + status);
+    }
+    
+    //postNewCourseCallback -- When returning from a POST request to submit course data,
+    //display an alert box with the return value.
+    // function postNewCourseCallback(response, status) {
+    //  alert("The POST request to create new course returned: \n" + JSON.stringify(response) + "\nStatus: " + status);
+    //}
+       
+    //ADDCOURSEFORM SUBMIT -- When the user clicks the submit button for the addPlayerForm, 
+    //issue a getJSON call using the web service URL supplied in the url item.
+    //We also supply a callback=? query param, per this discussion:
+    //https://stackoverflow.com/questions/29525860/google-apps-script-cross-domain-requests-stopped-working
+    //Note: Error checking is intentionally NOT performed. If the url is invalid or missing, the GET request will obviously fail!
+    $("#addCourseForm").submit(function(e) {
+      e.preventDefault(); //Don't permit normal behavior of submit button
+      var url =  $("#url").val() +  "?" + $(this).serialize() + "&callback=?";
+      $.getJSON(url, addCourseCallback);
+      /* If we wanted to submit this as a post request with a body, we could do this: 
+         var courseObj = {name: $("#name").val(), city: $("#city").val(),
+                       state: $("state").val(), country: $("#country").val()};
+          $.ajax({type: "POST",
+              url: $("#url").val(),
+              data: JSON.stringify(courseObj),
+              success: postNewCourseCallback,
+              dataType: 'json'
+          }); 
+      */
+      //execution continues in callback
+    });
+
+    //GETPLAYERDATAFORM SUBMIT -- When the user clicks the submit button for the getPlayerDataForm, 
+    //issue a getJSON call using the web service URL supplied in the url item.
+    //We also supply a callback=? query param, per this disucssion:
+    //https://stackoverflow.com/questions/29525860/google-apps-script-cross-domain-requests-stopped-working
+    //Note: Error checking is intentionally NOT performed. If the url is invalid or missing, the GET request will obviously fail!
+    $("#getCourseDataForm").submit(function(e) {
+      e.preventDefault(); //Don't permit normal behavior of submit button
+      var url =  $("#url").val() +  "?" + $(this).serialize() +  "&callback=?";
+      $.getJSON(url, getCourseDataCallback);
+      //execution continues in callback
+    });
+
+    //POSTPLAYERDATAFORM SUBMIT -- When the user clicks the submit button for the postPlayerDataForm, 
+    //issue a post call using the web service URL supplied in the url item.
+    //We also supply a callback=? query param, per this disucssion:
+    //https://stackoverflow.com/questions/29525860/google-apps-script-cross-domain-requests-stopped-working
+    //Note: Error checking is intentionally NOT performed. If the url is invalid or missing, the GET request will obviously fail!
+    $("#postPlayerDataForm").submit(function(e) {
+      e.preventDefault(); //Don't permit normal behavior of submit button
+      var url =  $("#url").val() + "?" + $("#postPlayerDataForm").serialize();
+      $.post(url, postPlayerDataCallback);
+    });
+   </script>

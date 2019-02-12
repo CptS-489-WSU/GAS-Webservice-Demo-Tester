@@ -1,0 +1,79 @@
+<!-- CptS 489, Spring 2019
+     Project: Tester for Demo Web Services API
+     File: app.html -- the client-side UI.
+-->
+
+<html>
+    <head>
+        <base target="_top">
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.2.2/jquery.form.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+      </head>
+      <body>
+        <center>
+        <h3>Test Speedgolf Course Database Demo Web Service API</h3>
+        <h5>CptS 489 Class Example</h5>
+        <br>
+        </center>
+        <label for="url">URL of Demo Web Services API:</label>
+        <input type="text" name="url" id="url" size="80" value="https://script.google.com/macros/s/AKfycbwHG49FpYZ-Fz8n3mLJsGQa85tWydFrEZ1qPpQcMPU7n76GmfU/exec">
+      <br/>
+        <h3>Add a Course</h3>
+        <form id="addCourseForm">
+          <label for="name">Course Name:</label>
+            <input type="text" name="name" id="name">
+          <br/>
+          <label for="city">City:</label>
+            <input type="text" name="city" id="city">
+          <br/>
+          <label for="state">State:</label>
+            <input type="text" name="state" id="state">
+          <br/>
+          <label for="country">Country:</label>
+            <input type="text" name="country" id="country">
+          <br/>
+          <label for="numHoles">Number of Holes:</label>
+          <input type="text" name="numHoles" id="numHoles">
+        <br/>
+          <input type="submit" id="submitAddCourseForm" class="btn btn-primary" value="Add Course">
+        </form>
+       <br>  
+       <h3>Get Course Data</h3>
+        <form id="getPlayerDataForm">
+          <label for="id">Course ID:</label>
+            <input type="text" name="id" id="id"/>
+          <br/>
+          <input type="submit" id="submitGetCourseDataForm" class="btn btn-primary" value="Get Course Data">
+        </form>
+       <br> 
+       <h3>Update Course Data</h3>
+       <form id="postCourseDataForm">
+          <label for="id">Course ID:</label>
+            <input type="text" name="id" id="id2"/>
+          <br>
+          <label for="holeNum">Hole Number:</label>
+            <input type="text" name="holeNum" id="holeNum"/>
+          <br>
+          <label for="strPar">Stroke Par:</label>
+            <input type="text" name="strPar" id="sStrPar"/>
+          <br>
+          <label for="timePar">Time Par:</label>
+            <input type="text" name="timePar" id="timePar"/>
+          <br>
+          <label for="golfDist">Golf Distance (Yards):</label>
+            <input type="text" name="golfDist" id="golfDist"/>
+          <br>
+          <label for="runDist">Running Distance (Yards):</label>
+            <input type="text" name="runDist" id="runDist"/>
+          <br>
+          <input type="submit" id="submitCourseDataForm" class="btn btn-primary" value="Post Course Data">
+        </form>
+     
+        <?!= include('js/eventHandlers')?>
+   </body>
+</html>
