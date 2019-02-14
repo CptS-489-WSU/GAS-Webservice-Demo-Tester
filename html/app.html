@@ -10,7 +10,6 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.2.2/jquery.form.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
       </head>
@@ -26,25 +25,25 @@
         <h3>Add a Course</h3>
         <form id="addCourseForm">
           <label for="name">Course Name:</label>
-            <input type="text" name="name" id="name">
+            <input type="text" name="name" id="name"/>
           <br/>
           <label for="city">City:</label>
-            <input type="text" name="city" id="city">
+            <input type="text" name="city" id="city"/>
           <br/>
           <label for="state">State:</label>
-            <input type="text" name="state" id="state">
+            <input type="text" name="state" id="state"/>
           <br/>
           <label for="country">Country:</label>
-            <input type="text" name="country" id="country">
+            <input type="text" name="country" id="country"/>
           <br/>
           <label for="numHoles">Number of Holes:</label>
-          <input type="text" name="numHoles" id="numHoles">
+          <input type="text" name="numHoles" id="numHoles"/>
         <br/>
-          <input type="submit" id="submitAddCourseForm" class="btn btn-primary" value="Add Course">
+        <input type="submit" id="submitAddCourseForm" class="btn btn-primary" value="Add Course"/>
         </form>
        <br>  
        <h3>Get Course Data</h3>
-        <form id="getPlayerDataForm">
+        <form id="getCourseDataForm">
           <label for="id">Course ID:</label>
             <input type="text" name="id" id="id"/>
           <br/>
@@ -72,8 +71,7 @@
             <input type="text" name="runDist" id="runDist"/>
           <br>
           <input type="submit" id="submitCourseDataForm" class="btn btn-primary" value="Post Course Data">
-        </form>
-     
-        <?!= include('js/eventHandlers')?>
+        </form>   
    </body>
+   <?!= include('js/eventHandlers')?>
 </html>
