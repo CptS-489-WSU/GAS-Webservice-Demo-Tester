@@ -8,16 +8,16 @@
       $("#id2").val(data.id);
     }
 
-    //getCourseDatacallback -- When returning from a GET request to get course data,
+    //getCourseDataCallback -- When returning from a GET request to get course data,
     //display an alert box with the returned object.
     function getCourseDataCallback(data, status) {
       alert("The GET request to get course data returned: \n" + JSON.stringify(data) + "\nStatus: " + status);
     }
 
-     //postCourseDataCallback -- When returning from a POST request to submit course data,
+     //updateCourseCallback -- When returning from a POST request to submit course data,
      //display an alert box with the return value.
-     function postCourseDataCallback(response, status) {
-      alert("The POST request to update course data returned: \n" + response + "\nStatus: " + status);
+     function updateCourseCallback(response, status) {
+      alert("The POST request to update course returned: \n" + response + "\nStatus: " + status);
     }
     
     //postNewCourseCallback -- When returning from a POST request to submit course data,
@@ -26,7 +26,7 @@
     //  alert("The POST request to create new course returned: \n" + JSON.stringify(response) + "\nStatus: " + status);
     //}
        
-    //ADDCOURSEFORM SUBMIT -- When the user clicks the submit button for the addPlayerForm, 
+    //ADDCOURSEFORM SUBMIT -- When the user clicks the submit button for the addCourseForm, 
     //issue a getJSON call using the web service URL supplied in the url item.
     //We also supply a callback=? query param, per this discussion:
     //https://stackoverflow.com/questions/29525860/google-apps-script-cross-domain-requests-stopped-working
@@ -36,16 +36,6 @@
       var url =  $("#url").val() +  "?" + $(this).serialize() + "&callback=?";
       alert("Calling $.getJSON with url = " + url);
       $.getJSON(url, addCourseCallback);
-      /* If we wanted to submit this as a post request with a body, we could do this: 
-         var courseObj = {name: $("#name").val(), city: $("#city").val(),
-                       state: $("state").val(), country: $("#country").val()};
-          $.ajax({type: "POST",
-              url: $("#url").val(),
-              data: JSON.stringify(courseObj),
-              success: postNewCourseCallback,
-              dataType: 'json'
-          }); 
-      */
       //execution continues in callback
     });
 
@@ -61,14 +51,24 @@
       //execution continues in callback
     });
 
-    //POSTPLAYERDATAFORM SUBMIT -- When the user clicks the submit button for the postPlayerDataForm, 
+    //POSTCOURSEDATAFORM SUBMIT -- When the user clicks the submit button for the postPlayerDataForm, 
     //issue a post call using the web service URL supplied in the url item.
     //We also supply a callback=? query param, per this disucssion:
     //https://stackoverflow.com/questions/29525860/google-apps-script-cross-domain-requests-stopped-working
     //Note: Error checking is intentionally NOT performed. If the url is invalid or missing, the GET request will obviously fail!
-    $("#postPlayerDataForm").submit(function(e) {
+    $("#postCourseDataForm").submit(function(e) {
       e.preventDefault(); //Don't permit normal behavior of submit button
-      var url =  $("#url").val() + "?" + $("#postPlayerDataForm").serialize();
-      $.post(url, postPlayerDataCallback);
+      /* Submit this as a post request with a body: */ 
+      var courseObj = {id: $("#id2").val(), holeNum: $("#holeNum").val(),
+                       strPar: $("#strPar").val(), timePar: $("#timePar").val(),
+                       golfDist: $("#golfDist").val(), runDist: $("#runDist").val()};
+      $.ajax({type: "POST",
+          url: $("#url").val(),
+          data: JSON.stringify(courseObj),
+          success: updateCourseCallback,
+          dataType: 'text'
+      });
+      //The following line of code is interchangeable with the above line of code:  
+      //$.post($("#url").val(),JSON.stringify(courseObj),updateCourseCallback,'text');
     });
    </script>
